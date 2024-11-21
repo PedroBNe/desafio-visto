@@ -1,0 +1,85 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <span>{{ isEditMode ? "Editar Produto" : "Novo Produto" }}</span>
+  </mat-toolbar>
+
+  <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="form">
+    <mat-card>
+      <mat-card-content>
+        <div *ngIf="product$ | async as product; else newProduct">
+          <p *ngIf="isEditMode && !product">Carregando dados do produto...</p>
+        </div>
+
+        <ng-template #newProduct>
+          <p>Criando um novo produto.</p>
+        </ng-template>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error
+            *ngIf="
+              productForm.get('name')?.invalid &&
+              productForm.get('name')?.touched
+            "
+          >
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Preço</mat-label>
+          <input matInput type="number" formControlName="price" />
+          <mat-error
+            *ngIf="
+              productForm.get('price')?.invalid &&
+              productForm.get('price')?.touched
+            "
+          >
+            Preço deve ser maior que zero.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error
+            *ngIf="
+              productForm.get('description')?.invalid &&
+              productForm.get('description')?.touched
+            "
+          >
+            Descrição é obrigatória.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>URL da Imagem</mat-label>
+          <input matInput formControlName="image" />
+          <mat-error
+            *ngIf="
+              productForm.get('image')?.invalid &&
+              productForm.get('image')?.touched
+            "
+          >
+            URL da imagem é obrigatória.
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="productForm.invalid"
+        >
+          {{ isEditMode ? "Atualizar" : "Salvar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          Cancelar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

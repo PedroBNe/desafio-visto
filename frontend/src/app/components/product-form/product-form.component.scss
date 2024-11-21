@@ -1,0 +1,17 @@
+.container {
+  margin: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+mat-card {
+  padding: 16px;
+}
