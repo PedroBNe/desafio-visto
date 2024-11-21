@@ -41,18 +41,11 @@ export class ProductListComponent {
       .pipe(
         tap((response) => {
           this.totalElements = response.totalElements;
-          if (this.currentPage === 0) {
-            console.log('Primeira página carregada.');
-          }
-          if (response.last) {
-            console.log('Última página carregada.');
-          }
         })
       );
   }
 
   onPageChange(event: PageEvent): void {
-    console.log('Nova página:', event.pageIndex);
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.fetchProducts();
