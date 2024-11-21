@@ -42,3 +42,10 @@ Este projeto é um sistema de gerenciamento de produtos com backend em Spring Bo
 2. **Compile e execute o backend:**
    ```bash
    mvn spring-boot:run
+
+## Desafio
+
+   [X] Criar uma barra de notificações (snackbar) que aparece ao salvar, atualizar
+ou excluir um produto.
+
+   [ ] Documentação da API utilizando Swagger.
